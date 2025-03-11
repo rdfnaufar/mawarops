@@ -31,7 +31,3 @@ Data asli dan hasil pembersihan disimpan dalam file scraped_titles.csv.
 # Catatan Penting
 Pastikan koneksi internet stabil saat menjalankan script.
 Jika terdapat error saat scraping, coba ubah User-Agent di headers agar menyerupai browser yang berbeda.
-
-# Lisensi
-Proyek ini tersedia di bawah lisensi MIT. Silakan gunakan dan kembangkan sesuai kebutuhan.
-
