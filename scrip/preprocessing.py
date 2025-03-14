@@ -34,11 +34,11 @@ def clean_text(text):
     return ' '.join(tokens)
 
 # Baca file CSV yang telah disimpan
-df = pd.read_csv('scraped_titles.csv')
+df = pd.read_csv('csv/scraped_titles.csv')
 df['Cleaned Title'] = df['Original Title'].apply(clean_text)
 
 # Simpan hasil pembersihan
-df.to_csv('cleaned_titles.csv', index=False, encoding='utf-8')
+df.to_csv('csv/cleaned_titles.csv', index=False, encoding='utf-8')
 print("Preprocessing selesai! File disimpan sebagai cleaned_titles.csv")
 
 # Analisis Statistik Dasar
@@ -86,5 +86,5 @@ def get_bert_embedding(text):
 # Ambil embedding untuk tiap judul
 bert_embeddings = [get_bert_embedding(title) for title in df['Cleaned Title']]
 bert_embeddings_df = pd.DataFrame(bert_embeddings)
-bert_embeddings_df.to_csv('bert_embeddings.csv', index=False)
+bert_embeddings_df.to_csv('csv/bert_embeddings.csv', index=False)
 print("\nBERT Embeddings selesai! File disimpan sebagai bert_embeddings.csv")
