@@ -20,7 +20,7 @@ NLTK: Pembersihan teks dengan NLP
     - `|-scraped_titles.csv`
     - `|-bert_embeddings.csv`
   - `|scrip`
-    - `|-scraping.ipynb` 
+    - `|-visualization.ipynb` 
     - `|-preprocessing.py`
     - `|-scraping.py`
   - `|README.md` 
