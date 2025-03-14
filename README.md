@@ -19,13 +19,13 @@ NLTK: Pembersihan teks dengan NLP
 3. Jalankan Script
 
 # Cara Kerja Script
-## Mengambil Data
+## 1. Mengambil Data
 - Menggunakan requests untuk mengambil HTML dari halaman arXiv.
 - Menggunakan BeautifulSoup untuk mengekstrak judul penelitian dari halaman tersebut.
-## Membersihkan Data
+## 2. Membersihkan Data
 - Menggunakan NLTK untuk tokenisasi, stopword removal, dan lemmatization.
 - Menghapus karakter yang tidak relevan dengan penelitian.
-## Menyimpan Data
+## 3. Menyimpan Data
 - Data asli dan hasil pembersihan disimpan dalam file scraped_titles.csv.
 
 # Catatan Penting
