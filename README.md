@@ -13,12 +13,12 @@ BeautifulSoup: Parsing HTML untuk mengekstrak data
 Pandas: Pengolahan dan penyimpanan data dalam format CSV
 NLTK: Pembersihan teks dengan NLP
 
-# Struktur File
+## Struktur File
 repository/
-┣  scrape.py           # Script utama untuk scraping dan pembersihan data
-┣  requirements.txt    # Daftar dependensi
-┣  README.md           # Dokumentasi proyek
-┣  scraped_titles.csv  # Hasil scraping dan pembersihan (setelah script dijalankan)
+│-- scrape.py           # Script utama untuk scraping dan pembersihan data
+│-- requirements.txt    # Daftar dependensi
+│-- README.md           # Dokumentasi proyek
+└-- scraped_titles.csv  # Hasil scraping dan pembersihan (setelah script dijalankan)
 
 # Instalasi dan Penggunaan
 1. Clone Repository
