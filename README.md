@@ -15,13 +15,15 @@ NLTK: Pembersihan teks dengan NLP
 
 ## Struktur File
 - **repository/**
-  - `scraping.ipynb` 
-  - `README.md` 
-  - `scraped_titles.csv`
-  - `bert_embeddings.csv`
-  - `cleaned_titles.csv`
-  - `preprocessing.py`
-  - `scraping.py`
+  - `|csv`  
+     - `cleaned_titles.csv`
+    - `|-scraped_titles.csv`
+    - `|-bert_embeddings.csv`
+  -`|scrip`
+    - `|-scraping.ipynb` 
+    - `|-preprocessing.py`
+    - `|-scraping.py`
+  - `|README.md` 
 
 
 # Instalasi dan Penggunaan
