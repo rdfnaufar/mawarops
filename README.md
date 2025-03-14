@@ -15,7 +15,7 @@ NLTK: Pembersihan teks dengan NLP
 
 ## Struktur File
 - **repository/**
-  - `scrape.inpy` → Script utama untuk scraping dan pembersihan data
+  - `scraping.ipynb` → Script utama untuk scraping dan pembersihan data
   - `requirements.txt` → Daftar dependensi
   - `README.md` → Dokumentasi proyek
   - `scraped_titles.csv` → Hasil scraping dan pembersihan (setelah script dijalankan)
