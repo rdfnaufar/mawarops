@@ -45,29 +45,6 @@ print("Preprocessing selesai! File disimpan sebagai cleaned_titles.csv")
 print("\nStatistik Dasar:")
 print(df.describe())
 
-# Visualisasi Distribusi Kata
-all_text = ' '.join(df['Cleaned Title'])
-
-# WordCloud
-plt.figure(figsize=(10, 5))
-wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_text)
-plt.imshow(wordcloud, interpolation='bilinear')
-plt.axis("off")
-plt.title("WordCloud dari Judul Penelitian")
-plt.show()
-
-# Histogram Frekuensi Kata
-words = all_text.split()
-word_freq = pd.Series(words).value_counts()
-
-plt.figure(figsize=(10, 5))
-word_freq[:10].plot(kind='bar', color='blue')
-plt.title("Top 10 Kata Paling Sering Muncul")
-plt.xlabel("Kata")
-plt.ylabel("Frekuensi")
-plt.xticks(rotation=45)
-plt.show()
-
 # Representasi Teks dengan TF-IDF
 vectorizer = TfidfVectorizer()
 tfidf_matrix = vectorizer.fit_transform(df['Cleaned Title'])
