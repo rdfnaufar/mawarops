@@ -16,10 +16,10 @@ NLTK: Pembersihan teks dengan NLP
 ## Struktur File
 - **repository/**
   - `|csv`  
-     - `cleaned_titles.csv`
+    - `cleaned_titles.csv`
     - `|-scraped_titles.csv`
     - `|-bert_embeddings.csv`
-  -`|scrip`
+  - `|scrip`
     - `|-scraping.ipynb` 
     - `|-preprocessing.py`
     - `|-scraping.py`
