@@ -1,51 +1,51 @@
-Original Title,Cleaned Title
-R2-T2: Re-Routing in Test-Time for Multimodal Mixture-of-Experts,r2-t2 re-routing test-time multimodal mixture-of-experts
-Walking the Web of Concept-Class Relationships in Incrementally Trained Interpretable Models,walking web concept-class relationship incrementally trained interpretable model
-Why Are Web AI Agents More Vulnerable Than Standalone LLMs? A Security Analysis,web ai agent vulnerable standalone llm security analysis
-Multi-Turn Code Generation Through Single-Step Rewards,multi-turn code generation single-step reward
-PhantomWiki: On-Demand Datasets for Reasoning and Retrieval Evaluation,phantomwiki on-demand datasets reasoning retrieval evaluation
-When does a predictor know its own loss?,predictor know loss
-Constrained Generative Modeling with Manually Bridged Diffusion Models,constrained generative modeling manually bridged diffusion model
-Safety Representations for Safer Policy Learning,safety representation safer policy learning
-Mixture of Structural-and-Textual Retrieval over Text-rich Graph Knowledge Bases,mixture structural-and-textual retrieval text-rich graph knowledge base
-Adversarial Robustness in Parameter-Space Classifiers,adversarial robustness parameter-space classifier
-Adapting Automatic Speech Recognition for Accented Air Traffic Control Communications,adapting automatic speech recognition accented air traffic control communication
-An exploration of features to improve the generalisability of fake news detection models,exploration feature improve generalisability fake news detection model
-Judge a Book by its Cover: Investigating Multi-Modal LLMs for Multi-Page Handwritten Document Transcription,judge book cover investigating multi-modal llm multi-page handwritten document transcription
-Scalable Graph Attention-based Instance Selection via Mini-Batch Sampling and Hierarchical Hashing,scalable graph attention-based instance selection via mini-batch sampling hierarchical hashing
-Conformal Tail Risk Control for Large Language Model Alignment,conformal tail risk control large language model alignment
-Online Meta-learning for AutoML in Real-time (OnMAR),online meta-learning automl real-time onmar
-Large Language Models as Attribution Regularizers for Efficient Model Training,large language model attribution regularizers efficient model training
-"On the Importance of Reward Design in Reinforcement Learning-based Dynamic Algorithm Configuration: A Case Study on OneMax with (1+($λ$,$λ$))-GA",importance reward design reinforcement learning-based dynamic algorithm configuration case study onemax λ λ -ga
-Understanding the Limits of Deep Tabular Methods with Temporal Shift,understanding limit deep tabular method temporal shift
-The Impact of Transparency in AI Systems on Users' Data-Sharing Intentions: A Scenario-Based Experiment,impact transparency ai system user data-sharing intention scenario-based experiment
-Teasing Apart Architecture and Initial Weights as Sources of Inductive Bias in Neural Networks,teasing apart architecture initial weight source inductive bias neural network
-Mixture of Experts for Recognizing Depression from Interview and Reading Tasks,mixture expert recognizing depression interview reading task
-Highly Parallelized Reinforcement Learning Training with Relaxed Assignment Dependencies,highly parallelized reinforcement learning training relaxed assignment dependency
-Mixture of Experts-augmented Deep Unfolding for Activity Detection in IRS-aided Systems,mixture experts-augmented deep unfolding activity detection irs-aided system
-Similarity-Distance-Magnitude Universal Verification,similarity-distance-magnitude universal verification
-Gradient-Guided Annealing for Domain Generalization,gradient-guided annealing domain generalization
-Transfer Learning in Latent Contextual Bandits with Covariate Shift Through Causal Transportability,transfer learning latent contextual bandit covariate shift causal transportability
-Your contrastive learning problem is secretly a distribution alignment problem,contrastive learning problem secretly distribution alignment problem
-LimeSoDa: A Dataset Collection for Benchmarking of Machine Learning Regressors in Digital Soil Mapping,limesoda dataset collection benchmarking machine learning regressors digital soil mapping
-Regional climate projections using a deep learning--based model-ranking and downscaling framework: Application to European climate zones,regional climate projection using deep learning -- based model-ranking downscaling framework application european climate zone
-FlexiDiT: Your Diffusion Transformer Can Easily Generate High-Quality Samples with Less Compute,flexidit diffusion transformer easily generate high-quality sample less compute
-Exploring Open-world Continual Learning with Knowns-Unknowns Knowledge Transfer,exploring open-world continual learning knowns-unknowns knowledge transfer
-Identifiable Multi-View Causal Discovery Without Non-Gaussianity,identifiable multi-view causal discovery without non-gaussianity
-Forward-Cooperation-Backward (FCB) learning in a Multi-Encoding Uni-Decoding neural network architecture,forward-cooperation-backward fcb learning multi-encoding uni-decoding neural network architecture
-Sanity Checking Causal Representation Learning on a Simple Real-World System,sanity checking causal representation learning simple real-world system
-RIZE: Regularized Imitation Learning via Distributional Reinforcement Learning,rize regularized imitation learning via distributional reinforcement learning
-A Generative Model Enhanced Multi-Agent Reinforcement Learning Method for Electric Vehicle Charging Navigation,generative model enhanced multi-agent reinforcement learning method electric vehicle charging navigation
-Recommendations from Sparse Comparison Data: Provably Fast Convergence for Nonconvex Matrix Factorization,recommendation sparse comparison data provably fast convergence nonconvex matrix factorization
-Order-Robust Class Incremental Learning: Graph-Driven Dynamic Similarity Grouping,order-robust class incremental learning graph-driven dynamic similarity grouping
-Offline Reinforcement Learning via Inverse Optimization,offline reinforcement learning via inverse optimization
-Climate And Resource Awareness is Imperative to Achieving Sustainable AI (and Preventing a Global AI Arms Race),climate resource awareness imperative achieving sustainable ai preventing global ai arm race
-Learning Classifiers That Induce Markets,learning classifier induce market
-Learning Hamiltonian Density Using DeepONet,learning hamiltonian density using deeponet
-Dam Volume Prediction Model Development Using ML Algorithms,dam volume prediction model development using ml algorithm
-WaveGAS: Waveform Relaxation for Scaling Graph Neural Networks,wavegas waveform relaxation scaling graph neural network
-Efficient Time Series Forecasting via Hyper-Complex Models and Frequency Aggregation,efficient time series forecasting via hyper-complex model frequency aggregation
-Can Textual Gradient Work in Federated Learning?,textual gradient work federated learning
-Do Sparse Autoencoders Generalize? A Case Study of Answerability,sparse autoencoders generalize case study answerability
-SeisMoLLM: Advancing Seismic Monitoring via Cross-modal Transfer with Pre-trained Large Language Model,seismollm advancing seismic monitoring via cross-modal transfer pre-trained large language model
-"Machine-learning for photoplethysmography analysis: Benchmarking feature, image, and signal-based approaches",machine-learning photoplethysmography analysis benchmarking feature image signal-based approach
+Original Title,Authors
+The Curse of Conditions: Analyzing and Improving Optimal Transport for Conditional Flow-Based Generation,"Ho Kei Cheng,Alexander Schwing"
+Charting and Navigating Hugging Face's Model Atlas,"Eliahu Horwitz,Nitzan Kurer,Jonathan Kahana,Liel Amar,Yedid Hoshen"
+Kolmogorov-Arnold Attention: Is Learnable Attention Better For Vision Transformers?,"Subhajit Maity,Killian Hitsman,Xin Li,Aritra Dutta"
+Transformers without Normalization,"Jiachen Zhu,Xinlei Chen,Kaiming He,Yann LeCun,Zhuang Liu"
+Poly-MgNet: Polynomial Building Blocks in Multigrid-Inspired ResNets,"Antonia van Betteray,Matthias Rottmann,Karsten Kahl"
+The Spectral Bias of Shallow Neural Network Learning is Shaped by the Choice of Non-linearity,"Justin Sahs,Ryan Pyle,Fabio Anselmi,Ankit Patel"
+Unveiling the Mathematical Reasoning in DeepSeek Models: A Comparative Study of Large Language Models,"Afrar Jahin,Arif Hassan Zidan,Yu Bao,Shizhe Liang,Tianming Liu,Wei Zhang"
+Radar: Fast Long-Context Decoding for Any Transformer,"Yongchang Hao,Mengyao Zhai,Hossein Hajimirsadeghi,Sepidehsadat Hosseini,Frederick Tung"
+FedPCA: Noise-Robust Fair Federated Learning via Performance-Capacity Analysis,"Nannan Wu,Zengqiang Yan,Nong Sang,Li Yu,Chang Wen Chen"
+ASIDE: Architectural Separation of Instructions and Data in Language Models,"Egor Zverev,Evgenii Kortukov,Alexander Panfilov,Soroush Tabesh,Alexandra Volkova,Sebastian Lapuschkin,Wojciech Samek,Christoph H. Lampert"
+From Linear to Spline-Based Classification:Developing and Enhancing SMPA for Noisy Non-Linear Datasets,Vatsal Srivastava
+DP-GPL: Differentially Private Graph Prompt Learning,"Jing Xu,Franziska Boenisch,Iyiola Emmanuel Olatunji,Adam Dziedzic"
+Language Models, Graph Searching, and Supervision Adulteration: When More Supervision is Less and How to Make More More,Arvid Frydenlund
+GBSVR: Granular Ball Support Vector Regression,"Reshma Rastogi,Ankush Bisht,Sanjay Kumar,Suresh Chandra"
+Structured Preconditioners in Adaptive Optimization: A Unified Analysis,"Shuo Xie,Tianhao Wang,Sashank Reddi,Sanjiv Kumar,Zhiyuan Li"
+Conformal Prediction Sets for Deep Generative Models via Reduction to Conformal Regression,"Hooman Shahrokhi,Devjeet Raj Roy,Yan Yan,Venera Arnaoudova,Janaradhan Rao Doppa"
+SySLLM: Generating Synthesized Policy Summaries for Reinforcement Learning Agents Using Large Language Models,"Sahar Admoni,Omer Ben-Porat,Ofra Amir"
+Sample Compression for Continual Learning,"Jacob Comeau,Mathieu Bazinet,Pascal Germain,Cem Subakan"
+Streaming Generation of Co-Speech Gestures via Accelerated Rolling Diffusion,"Evgeniia Vu,Andrei Boiarov,Dmitry Vetrov"
+Applying Tabular Deep Learning Models to Estimate Crash Injury Types of Young Motorcyclists,"Shriyank Somvanshi,Anannya Ghosh Tusti,Rohit Chakraborty,Subasish Das"
+SortingEnv: An Extendable RL-Environment for an Industrial Sorting Process,"Tom Maus,Nico Zengeler,Tobias Glasmachers"
+Sentiment Analysis in SemEval: A Review of Sentiment Identification Approaches,"Bousselham El Haddaoui,Raddouane Chiheb,Rdouan Faizi,Abdellatif El Afia"
+BeamLLM: Vision-Empowered mmWave Beam Prediction with Large Language Models,"Can Zheng,Jiguang He,Guofa Cai,Zitong Yu,Chung G. Kang"
+Langevin Monte-Carlo Provably Learns Depth Two Neural Nets at Any Size and Data,"Dibyakanti Kumar,Samyak Jha,Anirbit Mukherjee"
+Towards Constraint-Based Adaptive Hypergraph Learning for Solving Vehicle Routing: An End-to-End Solution,"Zhenwei Wang,Ruibin Bai,Tiehua Zhang"
+dFLMoE: Decentralized Federated Learning via Mixture of Experts for Medical Data Analysis,"Luyuan Xie,Tianyu Luan,Wenyuan Cai,Guochen Yan,Zhaoyu Chen,Nan Xi,Yuejian Fang,Qingni Shen,Zhonghai Wu,Junsong Yuan"
+Understanding the Logical Capabilities of Large Language Models via Out-of-Context Representation Learning,"Jonathan Shaki,Emanuele La Malfa,Michael Wooldridge,Sarit Kraus"
+Architecture-Aware Minimization (A$^2$M): How to Find Flat Minima in Neural Architecture Search,"Matteo Gambella,Fabrizio Pittorino,Manuel Roveri"
+Multi-objective Good Arm Identification with Bandit Feedback,"Xuanke Jiang,Kohei Hatano,Eiji Takimoto"
+Subgroup Performance Analysis in Hidden Stratifications,"Alceu Bissoto,Trung-Dung Hoang,Tim FlÃ¼hmann,Susu Sun,Christian F. Baumgartner,Lisa M. Koch"
+Probabilistic Forecasting via Autoregressive Flow Matching,"Ahmed El-Gazzar,Marcel van Gerven"
+Safe exploration in reproducing kernel Hilbert spaces,"Abdullah Tokmak,Kiran G. Krishnan,Thomas B. SchÃ¶n,Dominik Baumann"
+Mirror Online Conformal Prediction with Intermittent Feedback,"Bowen Wang,Matteo Zecchin,Osvaldo Simeone"
+Characterizing Nonlinear Dynamics via Smooth Prototype Equivalences,"Roy Friedman,Noa Moriel,Matthew Ricci,Guy Pelc,Yair Weiss,Mor Nitzan"
+Generative Binary Memory: Pseudo-Replay Class-Incremental Learning on Binarized Embeddings,"Yanis Basso-Bert,Anca Molnos,Romain Lemaire,William Guicquero,Antoine Dupret"
+Enhance Exploration in Safe Reinforcement Learning with Contrastive Representation Learning,"Duc Kien Doan,Bang Giang Le,Viet Cuong Ta"
+Nash Equilibrium Constrained Auto-bidding With Bi-level Reinforcement Learning,"Zhiyu Mou,Miao Xu,Rongquan Bai,Zhuoran Yang,Chuan Yu,Jian Xu,Bo Zheng"
+PyGDA: A Python Library for Graph Domain Adaptation,"Zhen Zhang,Meihan Liu,Bingsheng He"
+HyperArm Bandit Optimization: A Novel approach to Hyperparameter Optimization and an Analysis of Bandit Algorithms in Stochastic and Adversarial Settings,"Samih Karroum,Saad Mazhar"
+Resource efficient data transmission on animals based on machine learning,"Wilhelm Kerle-Malcharek,Karsten Klein,Martin Wikelski,Falk Schreiber,Timm A. Wild"
+AMR-Transformer: Enabling Efficient Long-range Interaction for Complex Neural Fluid Simulation,"Zeyi Xu,Jinfan Liu,Kuangxu Chen,Ye Chen,Zhangli Hu,Bingbing Ni"
+PIMRL: Physics-Informed Multi-Scale Recurrent Learning for Spatiotemporal Prediction,"Han Wan,Qi Wang,Hao Sun"
+Flows on convex polytopes,"Tomek Diederen,Nicola Zamboni"
+Policy Teaching via Data Poisoning in Learning from Human Preferences,"Andi Nika,Jonathan NÃ¶ther,Debmalya Mandal,Parameswaran Kamalaruban,Adish Singla,Goran RadanoviÄ‡"
+Probability-Flow ODE in Infinite-Dimensional Function Spaces,"Kunwoo Na,Junghyun Lee,Se-Young Yun,Sungbin Lim"
+Moss: Proxy Model-based Full-Weight Aggregation in Federated Learning with Heterogeneous Models,"Yifeng Cai,Ziqi Zhang,Ding Li,Yao Guo,Xiangqun Chen"
+Efficient Federated Fine-Tuning of Large Language Models with Layer Dropout,"Shilong Wang,Jianchun Liu,Hongli Xu,Jiaming Yan,Xianjun Gao"
+Deep Learning for Time Series Forecasting: A Survey,"Xiangjie Kong,Zhenghao Chen,Weiyao Liu,Kaili Ning,Lechao Zhang,Syauqie Muhammad Marier,Yichen Liu,Yuhao Chen,Feng Xia"
+Robustness Tokens: Towards Adversarial Robustness of Transformers,"Brian Pulfer,Yury Belousov,Slava Voloshynovskiy"
+Multiplicative Learning,"Han Kim,Hyungjoon Soh,Vipul Periwal,Junghyo Jo"
