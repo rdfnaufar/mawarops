@@ -41,6 +41,6 @@ for author in soup.find_all('div', class_='list-authors'):
 
 # Simpan hasil ke CSV
 df = pd.DataFrame({'Original Title': titles, 'Authors': authors})
-df.to_csv('scraped_titles.csv', index=False, encoding='utf-8')
+df.to_csv('csv/scraped_titles.csv', index=False, encoding='utf-8')
 
 print("Scraping dan pembersihan data selesai! File disimpan sebagai scraped_titles.csv")
