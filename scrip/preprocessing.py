@@ -34,7 +34,7 @@ def clean_text(text):
     return ' '.join(tokens)
 
 # Baca file CSV yang telah disimpan
-df = pd.read_csv('csv/scraped_titles.csv')
+df = pd.read_csv('csv/scraped_titles.csv', sep=',', quotechar='"', on_bad_lines='warn')
 df['Cleaned Title'] = df['Original Title'].apply(clean_text)
 
 # Simpan hasil pembersihan
