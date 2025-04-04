@@ -12,6 +12,8 @@ Requests: Mengambil data dari website
 BeautifulSoup: Parsing HTML untuk mengekstrak data
 Pandas: Pengolahan dan penyimpanan data dalam format CSV
 NLTK: Pembersihan teks dengan NLP
+FastAPI: Membuat REST API untuk akses data
+Docker: Containerisasi aplikasi untuk deployment yang konsisten
 
 ## Struktur File
 - **repository/**
@@ -23,6 +25,10 @@ NLTK: Pembersihan teks dengan NLP
     - `|-visualization.ipynb` 
     - `|-preprocessing.py`
     - `|-scraping.py`
+    - `|-scraping_service.py`
+    - `|-data_service.py`
+  - `Dockerfile`
+  - `docker-compose.yml`
   - `|README.md` 
 
 
@@ -40,6 +46,17 @@ NLTK: Pembersihan teks dengan NLP
 - Menghapus karakter yang tidak relevan dengan penelitian.
 ## 3. Menyimpan Data
 - Data asli dan hasil pembersihan disimpan dalam file scraped_titles.csv.
+
+# API Endpoints
+- **POST /scrape/**: Memicu proses scraping data dari arXiv
+- **GET /titles/cleaned/**: Mendapatkan daftar judul yang sudah dibersihkan
+
+# Cara Menjalankan dengan Docker
+1. Pastikan Docker sudah terinstal
+2. Jalankan perintah: `docker compose up --build`
+3. Akses API di:
+   - http://localhost:8001/scrape/ (POST untuk scraping)
+   - http://localhost:8002/titles/cleaned/ (GET untuk data yang sudah diproses)
 
 # Catatan Penting
 - Pastikan koneksi internet stabil saat menjalankan script.

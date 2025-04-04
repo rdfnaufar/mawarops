@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  mawarops-api:
+    build: .
+    ports:
+      - "8001:8001"
+      - "8002:8002"
+    volumes:
+      - ./csv:/app/csv

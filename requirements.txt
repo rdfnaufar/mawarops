@@ -7,3 +7,5 @@ scikit-learn
 torch
 transformers
 wordcloud
+fastapi
+uvicorn[standard]
