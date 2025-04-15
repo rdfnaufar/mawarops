@@ -38,7 +38,7 @@ def evaluate_topic_model(model):
     print(f"Coherence Score: {score:.4f}")
     return score
 
-def load_data_from_csv(csv_path='csv/cleaned_titles.csv'):
+def load_data_from_csv(csv_path='csv/scraped_titles.csv'):
     """
     Load dan ambil teks dari file CSV hasil scraping.
     """
