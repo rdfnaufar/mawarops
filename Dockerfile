@@ -1,18 +1,13 @@
-FROM python:3.9-slim
+FROM python:3.10-slim
 
-WORKDIR /app
+WORKDIR /workspaces/mawarops
 
 COPY requirements.txt .
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Pastikan folder csv ada
-RUN mkdir -p csv
+EXPOSE 8001 8002 8003 8004
 
-# Expose port untuk kedua service
-EXPOSE 8001
-EXPOSE 8002
-
-# Jalankan kedua service
-CMD ["sh", "-c", "python scrip/scraping_service.py & python scrip/data_service.py"]
+CMD ["uvicorn", "scrip.scraping_service:app", "--host", "0.0.0.0", "--port", "8001"]

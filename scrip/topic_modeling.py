@@ -7,12 +7,13 @@ Original file is located at
     https://colab.research.google.com/drive/1rIactENSGK3prhXo55XiFtlQdlAYkj0j
 """
 
-pip install bertopic scikit-learn pandas joblib
-
 import pandas as pd
 from bertopic import BERTopic
 from sklearn.feature_extraction.text import CountVectorizer
 import joblib
+import gensim
+from gensim.corpora import Dictionary
+from gensim.models.coherencemodel import CoherenceModel
 
 def train_topic_model(texts, model_path="bertopic_model.pkl"):
     """
@@ -30,19 +31,40 @@ def train_topic_model(texts, model_path="bertopic_model.pkl"):
 
     return topic_model, topics, probs
 
-def evaluate_topic_model(model):
+def evaluate_topic_model(model, texts):
     """
-    Evaluasi BERTopic menggunakan coherence score internal.
+    Hitung coherence score (c_v) secara manual menggunakan Gensim.
     """
-    score = model.get_coherence()
-    print(f"Coherence Score: {score:.4f}")
-    return score
+    # Ambil topik dari BERTopic
+    topics = []
+    for topic_id in model.get_topics():
+        # Ambil 10 kata teratas untuk setiap topik
+        words = [word for word, _ in model.get_topic(topic_id)]
+        topics.append(words)
 
-def load_data_from_csv(csv_path='csv/scraped_titles.csv'):
+    # Preprocessing untuk Gensim (tokenisasi sederhana)
+    tokenized_texts = [text.split() for text in texts]
+
+    # Buat dictionary dan corpus
+    dictionary = Dictionary(tokenized_texts)
+    corpus = [dictionary.doc2bow(text) for text in tokenized_texts]
+
+    # Hitung coherence
+    coherence_model = CoherenceModel(
+        topics=topics,
+        texts=tokenized_texts,
+        dictionary=dictionary,
+        coherence='c_v'
+    )
+    coherence_score = coherence_model.get_coherence()
+    print(f"Coherence Score: {coherence_score:.4f}")
+    return coherence_score
+
+def load_data_from_csv(csv_path='csv/cleaned_titles.csv'):
     """
-    Load dan ambil teks dari file CSV hasil scraping.
+    Load dan ambil teks dari file CSV hasil preprocessing.
     """
     df = pd.read_csv(csv_path)
-    if 'Original Title' not in df.columns:
-        raise ValueError("Kolom 'Original Title' tidak ditemukan.")
-    return df['Original Title'].tolist()
+    if 'Cleaned Title' not in df.columns:
+        raise ValueError("Kolom 'Cleaned Title' tidak ditemukan.")
+    return df['Cleaned Title'].tolist()

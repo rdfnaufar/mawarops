@@ -9,3 +9,6 @@ transformers
 wordcloud
 fastapi
 uvicorn[standard]
+bertopic
+joblib
+gensim

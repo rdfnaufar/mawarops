@@ -47,6 +47,35 @@ Docker: Containerisasi aplikasi untuk deployment yang konsisten
 ## 3. Menyimpan Data
 - Data asli dan hasil pembersihan disimpan dalam file scraped_titles.csv.
 
+# Microservices & Workflow
+
+Proyek ini terdiri dari beberapa service terpisah (microservices) yang saling terintegrasi untuk scraping, preprocessing, dan topic modeling:
+
+- **scraping_service** (port 8001): Melakukan scraping judul dan author dari arXiv, hasil disimpan ke `csv/scraped_titles.csv`.
+- **preprocessing_service** (port 8002): Melakukan preprocessing data hasil scraping, hasil disimpan ke `csv/cleaned_titles.csv`.
+- **data_service** (port 8003): Menyediakan endpoint untuk mengambil data yang sudah dipreproses.
+- **topic_modeling_service** (port 8004): Melatih dan mengevaluasi model topic modeling (BERTopic) serta menyediakan endpoint untuk melihat hasil topik.
+
+## Alur Kerja
+
+1. **Scraping**: Jalankan endpoint `/scrape/` pada port 8001 untuk mengambil data dari arXiv.
+2. **Preprocessing**: Jalankan endpoint `/preprocess/` pada port 8002 untuk membersihkan data hasil scraping.
+3. **Topic Modeling**: Jalankan endpoint `/train/` pada port 8004 untuk melatih model topic modeling dan menghitung coherence score.
+4. **Lihat Topik**: Endpoint `/topics/` pada port 8004 dapat digunakan untuk melihat hasil topik yang telah diidentifikasi oleh model.
+
+## API Endpoints
+
+- **POST /scrape/** (8001): Memicu proses scraping data dari arXiv.
+- **POST /preprocess/** (8002): Memicu proses preprocessing data hasil scraping.
+- **GET /titles/cleaned/** (8003): Mendapatkan daftar judul yang sudah dibersihkan.
+- **POST /train/** (8004): Melatih model topic modeling dan menghitung coherence score menggunakan Gensim.
+- **GET /topics/** (8004): Mendapatkan daftar topik hasil training model.
+
+## Catatan
+
+- Semua proses utama dapat diakses melalui API, sehingga workflow dapat diotomatisasi sepenuhnya.
+- Coherence score pada topic modeling dihitung menggunakan Gensim untuk memastikan evaluasi model yang sesuai standar.
+
 # API Endpoints
 - **POST /scrape/**: Memicu proses scraping data dari arXiv
 - **GET /titles/cleaned/**: Mendapatkan daftar judul yang sudah dibersihkan

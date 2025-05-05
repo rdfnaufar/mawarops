@@ -47,4 +47,4 @@ async def get_cleaned_titles():
 # Perintah untuk menjalankan server (jika file ini dijalankan langsung)
 if __name__ == "__main__":
     # Jalankan di port yang berbeda, misal 8002
-    uvicorn.run("data_service:app", host="0.0.0.0", port=8002, reload=True)
+    uvicorn.run("data_service:app", host="0.0.0.0", port=8003, reload=True)

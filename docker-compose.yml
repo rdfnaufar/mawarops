@@ -1,10 +1,38 @@
-version: '3'
-
+version: '3.8'
 services:
-  mawarops-api:
+  scraping_service:
     build: .
+    command: uvicorn scrip.scraping_service:app --host 0.0.0.0 --port 8001 --reload
+    volumes:
+      - .:/workspaces/mawarops
     ports:
       - "8001:8001"
-      - "8002:8002"
+
+  preprocessing_service:
+    build: .
+    command: uvicorn scrip.preprocessing_service:app --host 0.0.0.0 --port 8002 --reload
     volumes:
-      - ./csv:/app/csv
+      - .:/workspaces/mawarops
+    ports:
+      - "8002:8002"
+    depends_on:
+      - scraping_service
+
+  data_service:
+    build: .
+    command: uvicorn scrip.data_service:app --host 0.0.0.0 --port 8003 --reload
+    volumes:
+      - .:/workspaces/mawarops
+    ports:
+      - "8003:8003"
+
+  topic_modeling_service:
+    build: .
+    command: uvicorn scrip.topic_modeling_service:app --host 0.0.0.0 --port 8004 --reload
+    volumes:
+      - .:/workspaces/mawarops
+    ports:
+      - "8004:8004"
+    depends_on:
+      - data_service
+      - preprocessing_service
