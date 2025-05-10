@@ -1,0 +1,5 @@
+outs:
+- md5: 02a0a99d737131dd2212ddd5c82e2c53
+  size: 7258
+  hash: md5
+  path: scraped_titles.csv
