@@ -12,3 +12,4 @@ uvicorn[standard]
 bertopic
 joblib
 gensim
+mlflow
