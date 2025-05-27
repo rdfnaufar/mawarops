@@ -13,3 +13,4 @@ bertopic
 joblib
 gensim
 mlflow
+wandb
