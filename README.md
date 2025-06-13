@@ -15,23 +15,29 @@ NLTK: Pembersihan teks dengan NLP
 FastAPI: Membuat REST API untuk akses data
 Docker: Containerisasi aplikasi untuk deployment yang konsisten
 
-## Struktur File
-- **repository/**
-  - `|csv`  
-    - `cleaned_titles.csv`
-    - `|-scraped_titles.csv`
-    - `|-bert_embeddings.csv`
-  - `|scrip`
-    - `|-visualization.ipynb` 
-    - `|-preprocessing.py`
-    - `|-scraping.py`
-    - `|-scraping_service.py`
-    - `|-data_service.py`
-  - `Dockerfile`
-  - `docker-compose.yml`
-  - `|README.md` 
+## Struktur Direktori
 
+```
+mawarops/
+├── csv/               
+│   ├── cleaned_titles.csv
+│   ├── scraped_titles.csv`
+│   ├── bert_embeddings.csv
+│   └── requirements.txt
+├── scrip/             
+│   ├── visualization.ipynb
+│   ├── preprocessing.py
+│   ├── scraping.py
+│   ├── scraping_service.py
+│   └── data_service.py
+├── data/                  
+│   └── resep_makananv2.csv
+├── Dockerfile
+├── docker-compose.yml  
+└── README.md            
+```
 
+---
 # Instalasi dan Penggunaan
 1. Clone Repository
 2. Instalasi Dependensi
