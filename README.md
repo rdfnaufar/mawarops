@@ -19,21 +19,26 @@ Docker: Containerisasi aplikasi untuk deployment yang konsisten
 
 ```
 mawarops/
-├── csv/               
-│   ├── cleaned_titles.csv
-│   ├── scraped_titles.csv`
+├── csv/
+│   ├── .gitignore           
 │   ├── bert_embeddings.csv
-│   └── requirements.txt
+│   ├── cleaned_titles.csv
+│   ├── bert_embeddings.csv
+│   └── scraped_titles.csv.dvc
 ├── scrip/             
 │   ├── visualization.ipynb
 │   ├── preprocessing.py
 │   ├── scraping.py
 │   ├── scraping_service.py
 │   └── data_service.py
-├── data/                  
-│   └── resep_makananv2.csv
+├── .dvc
+│   ├── .gitignore           
+│   └── config
 ├── Dockerfile
-├── docker-compose.yml  
+├── docker-compose.yml
+├── bertopic_model.pkl
+├── prometheus.yml
+├── requirements.txt
 └── README.md            
 ```
 
