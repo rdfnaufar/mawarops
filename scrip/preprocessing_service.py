@@ -1,35 +1,63 @@
-from fastapi import FastAPI, HTTPException
-import pandas as pd
-import uvicorn
-import os
-from scrip.preprocessing import clean_text
-import nltk
+# scrip/preprocessing_service.py
 
+from fastapi import FastAPI, HTTPException
+import uvicorn
+import logging
+import os
+
+# --- Import fungsi utama dari file logika ---
+# Menggunakan impor relatif dengan tanda titik (.)
+try:
+    from .preprocessing import run_preprocessing
+except ImportError:
+    run_preprocessing = None
+    logging.error("Gagal mengimpor 'run_preprocessing' dari '.preprocessing'. Pastikan file dan struktur direktori sudah benar.")
+
+
+# --- Konfigurasi Logging ---
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+# --- Inisialisasi Aplikasi FastAPI ---
 app = FastAPI(
-    title="Preprocessing Service API",
-    description="API untuk preprocessing data judul penelitian.",
+    title="Preprocessing Service",
+    description="API untuk memicu proses preprocessing data judul penelitian.",
     version="1.0.0"
 )
 
-CSV_FOLDER = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'csv')
-SCRAPED_PATH = os.path.join(CSV_FOLDER, 'scraped_titles.csv')
-CLEANED_PATH = os.path.join(CSV_FOLDER, 'cleaned_titles.csv')
 
-@app.post("/preprocess/", summary="Preprocessing Judul")
-def preprocess_titles():
+# --- Definisi Endpoint ---
+@app.post("/preprocess/", summary="Memicu Proses Preprocessing")
+def trigger_preprocessing_task():
+    """
+    Endpoint ini akan memanggil fungsi `run_preprocessing` yang berisi
+    seluruh logika untuk membaca, membersihkan, dan menyimpan data.
+    """
+    if run_preprocessing is None:
+        raise HTTPException(
+            status_code=500, 
+            detail="Service tidak terkonfigurasi dengan benar karena gagal mengimpor fungsi preprocessing."
+        )
+
     try:
-        df = pd.read_csv(SCRAPED_PATH)
-        if 'Original Title' not in df.columns:
-            raise HTTPException(status_code=400, detail="Kolom 'Original Title' tidak ditemukan.")
-        nltk.download('punkt', quiet=True)
-        nltk.download('stopwords', quiet=True)
-        nltk.download('wordnet', quiet=True)
-        nltk.download('omw-1.4', quiet=True)
-        df['Cleaned Title'] = df['Original Title'].apply(clean_text)
-        df.to_csv(CLEANED_PATH, index=False, encoding='utf-8')
-        return {"message": f"Preprocessing selesai! File disimpan sebagai {CLEANED_PATH}"}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logging.info("Permintaan preprocessing diterima. Memulai proses...")
+        run_preprocessing()
+        message = "Proses preprocessing berhasil diselesaikan."
+        logging.info(message)
+        return {"status": "success", "message": message}
 
+    except FileNotFoundError as e:
+        logging.error(f"File input tidak ditemukan: {e}")
+        raise HTTPException(status_code=404, detail=f"File input tidak ditemukan. Pastikan 'scraped_titles.csv' ada. Detail: {e}")
+    
+    except Exception as e:
+        logging.error(f"Terjadi error yang tidak terduga selama preprocessing: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Terjadi error internal: {e}")
+
+
+# --- Pemicu untuk Menjalankan Server ---
 if __name__ == "__main__":
-    uvicorn.run("preprocessing_service:app", host="0.0.0.0", port=8002, reload=True)
+    # --- PERBAIKAN DI SINI ---
+    # Beri tahu Uvicorn path lengkap ke objek 'app'
+    # yaitu: paket.modul:objek
+    uvicorn.run("scrip.preprocessing_service:app", host="0.0.0.0", port=8002, reload=True)

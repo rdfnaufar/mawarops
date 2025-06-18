@@ -1,6 +1,14 @@
-env/
+# Virtual Environment (ini yang paling penting)
+venv/
+
+# Folder Cache Python
 __pycache__/
 *.pyc
+
+# File Data & Model
 *.pkl
+csv/
+
+# Folder Pelacakan Eksperimen
 mlruns/
 wandb/

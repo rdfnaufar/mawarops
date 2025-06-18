@@ -1,61 +1,90 @@
+# scrip/scraping.py
+
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import time
+import re
 import os
-import mlflow
-import multiprocessing
-from topic_modeling import train_topic_model, evaluate_topic_model, load_data_from_csv
 
-def run_experiment_with_mlflow(csv_path, experiment_name="Topic_Modeling"):
-    """
-    Jalankan eksperimen topic modeling dengan MLflow tracking
-    """
-    # Setup MLflow
-    mlflow.set_experiment(experiment_name)
-    
-    # Load data
-    texts = load_data_from_csv(csv_path)
-    
-    # Mulai MLflow run
-    with mlflow.start_run():
-        # Log parameter
-        mlflow.log_param("num_samples", len(texts))
-        
-        # Train model menggunakan kode yang sudah ada
-        model_path = "bertopic_model.pkl"
-        model, topics, probs = train_topic_model(texts, model_path=model_path)
-        
-        # Log model sebagai artifact
-        mlflow.log_artifact(model_path)
-        
-        # Visualisasi topik (jika tersedia)
-        try:
-            fig = model.visualize_topics()
-            fig_path = "topic_visualization.html"
-            fig.write_html(fig_path)
-            mlflow.log_artifact(fig_path)
-        except Exception as e:
-            print(f"Tidak bisa membuat visualisasi: {e}")
-        
-        # Log metrics
-        try:
-            # Hitung coherence score
-            coherence_score = evaluate_topic_model(model, texts)
-            mlflow.log_metric("coherence_score", coherence_score)
-        except Exception as e:
-            print(f"Tidak bisa menghitung coherence score: {e}")
-        
-        # Log jumlah topik
-        mlflow.log_metric("num_topics", len(model.get_topics()))
-        
-    return model, topics, probs
+# --- Konfigurasi ---
+# Pindahkan semua variabel konfigurasi ke atas agar mudah diubah
+CATEGORIES = [
+    'cs.AI', 'cs.LG', 'cs.CL', 'cs.CV', 'cs.RO', 'cs.NE', 'cs.SI'
+]
+SHOW_PER_PAGE = 2000 
+HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"}
+OUTPUT_DIR = 'csv'
+OUTPUT_FILENAME = os.path.join(OUTPUT_DIR, 'scraped_titles.csv')
 
-if __name__ == "__main__":
-    # Penting untuk Windows
-    multiprocessing.freeze_support()
+# --- Fungsi Utama yang Bisa Diimpor ---
+def run_scraping():
+    """
+    Fungsi ini membungkus seluruh logika scraping dari awal hingga akhir.
+    Ini adalah fungsi yang akan dipanggil oleh run_experiments.py.
+    """
+    # Pastikan direktori output ada
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
     
-    # Path ke file CSV
-    csv_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'csv', 'cleaned_titles.csv')
-    
-    # Jalankan eksperimen dengan MLflow tracking
-    print("Menjalankan eksperimen dengan MLflow tracking...")
-    model, topics, probs = run_experiment_with_mlflow(csv_path)
-    
-    print("Eksperimen selesai. Cek MLflow UI untuk hasil.")
+    all_titles = []
+    all_authors = []
+
+    print("Memulai proses scraping dengan metode /recent...")
+
+    # Looping untuk setiap kategori dalam daftar CATEGORIES
+    for category in CATEGORIES:
+        url = f"https://arxiv.org/list/{category}/recent?show={SHOW_PER_PAGE}"
+        print(f"\n--- Scraping Kategori: {category} ---")
+        print(f"Mencoba URL: {url}")
+        
+        try:
+            response = requests.get(url, headers=HEADERS, timeout=20)
+            response.raise_for_status()
+
+            soup = BeautifulSoup(response.text, 'html.parser')
+
+            current_titles = soup.find_all('div', class_='list-title', limit=SHOW_PER_PAGE)
+            current_authors = soup.find_all('div', class_='list-authors', limit=SHOW_PER_PAGE)
+
+            if not current_titles:
+                print("    -> Info: Tidak ada judul yang ditemukan untuk kategori ini.")
+                continue
+            
+            print(f"    -> Sukses! Menemukan {len(current_titles)} entri.")
+
+            for title in current_titles:
+                text = re.sub(r'(?i)^title[:\-\s]*', '', title.get_text(strip=True))
+                all_titles.append(text)
+
+            for author in current_authors:
+                author_text = author.get_text(strip=True).replace("Authors:", "").strip()
+                all_authors.append(author_text)
+                
+            time.sleep(3)
+
+        except requests.exceptions.RequestException as e:
+            print(f"    -> Gagal mengambil data untuk kategori {category}. Error: {e}")
+            continue
+
+    # --- Simpan ke CSV ---
+    min_length = min(len(all_titles), len(all_authors))
+    df = pd.DataFrame({
+        'Original Title': all_titles[:min_length],
+        'Authors': all_authors[:min_length]
+    })
+
+    print(f"\nTotal data sebelum menghapus duplikat: {len(df)}")
+    df.drop_duplicates(subset=['Original Title'], inplace=True)
+    print(f"Total data setelah menghapus duplikat: {len(df)}")
+
+    if not df.empty:
+        df.to_csv(OUTPUT_FILENAME, index=False, encoding='utf-8')
+        print(f"\nScraping selesai! Total {len(df)} data unik disimpan ke {OUTPUT_FILENAME}")
+    else:
+        print("\nTidak ada data yang berhasil di-scrape.")
+
+# --- Bagian untuk menjalankan file ini secara mandiri ---
+# Ini tidak akan dieksekusi saat file diimpor oleh skrip lain.
+if __name__ == '__main__':
+    print("Menjalankan scraping.py secara langsung...")
+    run_scraping()
