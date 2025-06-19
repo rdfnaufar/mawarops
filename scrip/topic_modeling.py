@@ -81,9 +81,9 @@ def load_data_from_csv(csv_path):
     df = pd.read_csv(csv_path)
     
     # --- TAMBAHKAN BARIS INI ---
-    # Ambil hanya 1000 baris pertama untuk meringankan beban
-    df = df.head(1000) 
-    print("INFO: Hanya menggunakan 1000 baris pertama dari data untuk meringankan proses.")
+    # Ambil hanya 500 baris pertama untuk meringankan beban
+    df = df.head(500) 
+    print("INFO: Hanya menggunakan 500 baris pertama dari data untuk meringankan proses.")
     # ---------------------------
 
     # ... (sisa fungsi sama)
