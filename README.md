@@ -20,26 +20,24 @@ Docker: Containerisasi aplikasi untuk deployment yang konsisten
 ```
 mawarops/
 ├── csv/
-│   ├── .gitignore           
-│   ├── bert_embeddings.csv
-│   ├── cleaned_titles.csv
-│   ├── bert_embeddings.csv
-│   └── scraped_titles.csv.dvc
-├── scrip/             
-│   ├── visualization.ipynb
-│   ├── preprocessing.py
-│   ├── scraping.py
-│   ├── scraping_service.py
-│   └── data_service.py
-├── .dvc
-│   ├── .gitignore           
-│   └── config
-├── Dockerfile
-├── docker-compose.yml
-├── bertopic_model.pkl
-├── prometheus.yml
-├── requirements.txt
-└── README.md            
+│   ├── bert_embeddings.csv      # Embedding dari model BERT
+│   ├── cleaned_titles.csv       # Judul bersih hasil preprocessing
+│   └── scraped_titles.csv.dvc   # File DVC untuk data scraping
+├── scrip/
+│   ├── scraping_service.py      # Service untuk scraping
+│   ├── preprocessing_service.py # Service untuk preprocessing
+│   ├── data_service.py          # Service untuk menyajikan data
+│   ├── topic_modeling_service.py# Service untuk topic modeling
+│   ├── preprocessing.py         # Logika inti preprocessing
+│   ├── scraping.py              # Logika inti scraping
+│   └── visualization.ipynb      # Notebook untuk visualisasi
+├── .dvc/                        # Direktori DVC
+├── Dockerfile                   # Konfigurasi build Docker image
+├── docker-compose.yml           # Konfigurasi multi-container
+├── bertopic_model.pkl           # Model BERTopic yang sudah dilatih
+├── prometheus.yml               # Konfigurasi Prometheus
+├── requirements.txt             # Daftar dependensi Python
+└── README.md       
 ```
 
 ---

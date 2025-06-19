@@ -5,10 +5,7 @@ venv/
 __pycache__/
 *.pyc
 
-# File Data & Model
-*.pkl
-csv/
-
 # Folder Pelacakan Eksperimen
 mlruns/
 wandb/
+/bertopic_model.pkl

@@ -1,0 +1,6 @@
+outs:
+- md5: cfed57c19012a59491b0e9fb3f07e0f7.dir
+  size: 63438
+  nfiles: 3
+  hash: md5
+  path: bertopic_model.pkl
