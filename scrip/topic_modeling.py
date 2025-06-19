@@ -5,6 +5,7 @@ from bertopic import BERTopic
 from gensim.corpora import Dictionary
 from gensim.models.coherencemodel import CoherenceModel
 import os
+os.environ['KMP_DUPLICATE_LIB_OK']='TRUE'
 
 # --- Konfigurasi ---
 INPUT_FILENAME = 'csv/cleaned_titles.csv'

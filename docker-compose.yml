@@ -3,21 +3,28 @@ version: '3.8'
 # Beri nama proyek agar container tidak memiliki nama acak
 name: mawarops-pipeline
 
+# --- DEFINISI JARINGAN BARU DI SINI ---
+networks:
+  # Kita buat jaringan baru bernama 'mawarops-net'
+  mawarops-net:
+    driver: bridge # Tipe jaringan standar
+
 # Definisikan semua service yang akan kita jalankan
 services:
 
   # Service untuk menyajikan data dan hasil model
   data_service:
-    build: . # Build dari Dockerfile di direktori saat ini
+    build: .
     container_name: mawarops_data_service
     command: python -m scrip.data_service
     ports:
       - "8003:8003"
-    # Mapping spesifik: hanya file yang dibutuhkan yang di-mount
-    # ':ro' berarti read-only, mencegah container mengubah file ini
     volumes:
       - ./csv/cleaned_titles.csv:/app/csv/cleaned_titles.csv:ro
       - ./bertopic_model.pkl:/app/bertopic_model.pkl:ro
+    # Hubungkan service ini ke jaringan kustom kita
+    networks:
+      - mawarops-net
 
   # Service untuk melatih model
   topic_modeling_service:
@@ -27,11 +34,12 @@ services:
     ports:
       - "8004:8004"
     volumes:
-      # Perlu membaca data bersih, jadi kita mount sebagai read-only
       - ./csv/cleaned_titles.csv:/app/csv/cleaned_titles.csv:ro
-      # Perlu menulis model dan data csv, jadi kita mount seluruh folder
       - ./csv:/app/csv
-      - ./:/app # Mapping root untuk menyimpan model ke lokasi yang benar
+      - ./:/app
+    # Hubungkan service ini ke jaringan kustom kita
+    networks:
+      - mawarops-net
 
   # Service untuk preprocessing
   preprocessing_service:
@@ -41,8 +49,10 @@ services:
     ports:
       - "8002:8002"
     volumes:
-      # Perlu membaca data mentah dan menulis data bersih
       - ./csv:/app/csv
+    # Hubungkan service ini ke jaringan kustom kita
+    networks:
+      - mawarops-net
 
   # Service untuk scraping
   scraping_service:
@@ -52,10 +62,12 @@ services:
     ports:
       - "8001:8001"
     volumes:
-      # Perlu menulis data mentah ke folder csv
       - ./csv:/app/csv
+    # Hubungkan service ini ke jaringan kustom kita
+    networks:
+      - mawarops-net
 
-  # --- Monitoring Stack (Konfigurasi Anda sudah bagus) ---
+  # --- Monitoring Stack ---
   prometheus:
     image: prom/prometheus
     container_name: mawarops_prometheus
@@ -63,6 +75,9 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
+    # Hubungkan Prometheus ke jaringan yang sama agar bisa "melihat" service lain
+    networks:
+      - mawarops-net
 
   grafana:
     image: grafana/grafana
@@ -73,6 +88,9 @@ services:
       - grafana-data:/var/lib/grafana
     depends_on:
       - prometheus
+    # Hubungkan Grafana ke jaringan yang sama
+    networks:
+      - mawarops-net
 
 # Definisikan volume persisten untuk data Grafana
 volumes:

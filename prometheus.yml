@@ -1,7 +1,19 @@
 global:
-  scrape_interval: 15s
+  scrape_interval: 15s # Seberapa sering Prometheus mengambil data
 
 scrape_configs:
-  - job_name: "mawarops"
+  # Konfigurasi untuk memantau Prometheus itu sendiri
+  - job_name: 'prometheus'
     static_configs:
-      - targets: ["node-exporter:9100"] # node_exporter
+      - targets: ['localhost:9090']
+
+  # Konfigurasi untuk memantau SEMUA service aplikasi Anda
+  - job_name: 'mawarops_services'
+    static_configs:
+      - targets:
+          # Nama service harus sama persis dengan yang ada di docker-compose.yml
+          # Docker akan secara otomatis mengarahkan nama ini ke IP container yang benar.
+          - 'scraping_service:8001'
+          - 'preprocessing_service:8002'
+          - 'data_service:8003'
+          - 'topic_modeling_service:8004'

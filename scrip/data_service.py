@@ -7,6 +7,7 @@ import os
 import json
 import logging
 from typing import List, Dict
+from prometheus_fastapi_instrumentator import Instrumentator
 
 # --- Import Model Loader ---
 # Kita perlu BERTopic untuk memuat model yang sudah disimpan
@@ -34,6 +35,9 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# --- INSTRUMENTASI PROMETHEUS DI SINI ---
+# Ini akan secara otomatis membuat endpoint /metrics
+Instrumentator().instrument(app).expose(app)
 
 # --- Definisi Endpoint ---
 
@@ -96,5 +100,4 @@ def get_model_topics():
 
 # --- Pemicu untuk Menjalankan Server ---
 if __name__ == "__main__":
-    # PERBAIKAN: Beri tahu Uvicorn path lengkap ke objek 'app'
     uvicorn.run("scrip.data_service:app", host="0.0.0.0", port=8003, reload=True)
