@@ -1,0 +1,26 @@
+# File .dockerignore
+
+# Abaikan Virtual Environment
+venv/
+env/
+
+# Abaikan folder Git dan DVC
+.git/
+.dvc/
+.dvcignore
+
+# Abaikan cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Abaikan file konfigurasi editor
+.vscode/
+.idea/
+
+# Abaikan folder output MLflow
+mlruns/
+
+# Abaikan file kredensial (seharusnya tidak pernah ada di dalam image)
+gdrive-credentials.json

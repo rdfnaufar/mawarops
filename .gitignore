@@ -9,3 +9,6 @@ __pycache__/
 mlruns/
 wandb/
 /bertopic_model.pkl
+
+# File Kredensial - JANGAN PERNAH DI-COMMIT
+gdrive-credentials.json

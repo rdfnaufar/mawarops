@@ -1,63 +1,79 @@
+# Gunakan versi syntax docker-compose yang modern
 version: '3.8'
+# Beri nama proyek agar container tidak memiliki nama acak
+name: mawarops-pipeline
+
+# Definisikan semua service yang akan kita jalankan
 services:
-  scraping_service:
-    build: .
-    command: uvicorn scrip.scraping_service:app --host 0.0.0.0 --port 8001 --reload
-    volumes:
-      - .:/workspaces/mawarops
-    ports:
-      - "8001:8001"
 
-  preprocessing_service:
-    build: .
-    command: uvicorn scrip.preprocessing_service:app --host 0.0.0.0 --port 8002 --reload
-    volumes:
-      - .:/workspaces/mawarops
-    ports:
-      - "8002:8002"
-    depends_on:
-      - scraping_service
-
+  # Service untuk menyajikan data dan hasil model
   data_service:
-    build: .
-    command: uvicorn scrip.data_service:app --host 0.0.0.0 --port 8003 --reload
-    volumes:
-      - .:/workspaces/mawarops
+    build: . # Build dari Dockerfile di direktori saat ini
+    container_name: mawarops_data_service
+    command: python -m scrip.data_service
     ports:
       - "8003:8003"
+    # Mapping spesifik: hanya file yang dibutuhkan yang di-mount
+    # ':ro' berarti read-only, mencegah container mengubah file ini
+    volumes:
+      - ./csv/cleaned_titles.csv:/app/csv/cleaned_titles.csv:ro
+      - ./bertopic_model.pkl:/app/bertopic_model.pkl:ro
 
+  # Service untuk melatih model
   topic_modeling_service:
     build: .
-    command: uvicorn scrip.topic_modeling_service:app --host 0.0.0.0 --port 8004 --reload
-    volumes:
-      - .:/workspaces/mawarops
+    container_name: mawarops_topic_modeling_service
+    command: python -m scrip.topic_modeling_service
     ports:
       - "8004:8004"
-    depends_on:
-      - data_service
-      - preprocessing_service
+    volumes:
+      # Perlu membaca data bersih, jadi kita mount sebagai read-only
+      - ./csv/cleaned_titles.csv:/app/csv/cleaned_titles.csv:ro
+      # Perlu menulis model dan data csv, jadi kita mount seluruh folder
+      - ./csv:/app/csv
+      - ./:/app # Mapping root untuk menyimpan model ke lokasi yang benar
 
+  # Service untuk preprocessing
+  preprocessing_service:
+    build: .
+    container_name: mawarops_preprocessing_service
+    command: python -m scrip.preprocessing_service
+    ports:
+      - "8002:8002"
+    volumes:
+      # Perlu membaca data mentah dan menulis data bersih
+      - ./csv:/app/csv
+
+  # Service untuk scraping
+  scraping_service:
+    build: .
+    container_name: mawarops_scraping_service
+    command: python -m scrip.scraping_service
+    ports:
+      - "8001:8001"
+    volumes:
+      # Perlu menulis data mentah ke folder csv
+      - ./csv:/app/csv
+
+  # --- Monitoring Stack (Konfigurasi Anda sudah bagus) ---
   prometheus:
     image: prom/prometheus
+    container_name: mawarops_prometheus
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
 
-  node-exporter:
-    image: prom/node-exporter
-    ports:
-      - "9100:9100"
-
   grafana:
     image: grafana/grafana
+    container_name: mawarops_grafana
     ports:
       - "3000:3000"
     volumes:
-    - grafana-data:/var/lib/grafana
+      - grafana-data:/var/lib/grafana
     depends_on:
       - prometheus
 
+# Definisikan volume persisten untuk data Grafana
 volumes:
   grafana-data:
-
